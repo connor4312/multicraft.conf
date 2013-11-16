@@ -1,18 +1,22 @@
 from app import app
-import flask, flask.views, request
 
-class GeneratorView(flask.views.MethodView):
-	def get(self):
+import flask
+from flask import render_template, request
+
+@app.route('/create', methods = ['GET', 'POST'])
+def show_view():
+
+	if request.method == 'GET':
 		return flask.render_template('generate.html');
 
-	def post(self):
+	if request.method == 'POST':
 
 		parts = []
 		output = ''
 
-		for name, value in request.form:
-			section, attribute = name.split('_', 1)
-			parts[section][attribute] = value
+		for item in request.form:
+			section, attribute = item[0].split('_', 1)
+			parts[section][attribute] = item[1]
 
 		for section, attributes in parts:
 			output += '[' + section + ']'
@@ -20,6 +24,3 @@ class GeneratorView(flask.views.MethodView):
 				output += '\n' + attribute + '=' + value
 
 		return output
-
-
-app.add_url_rule('/create', view_func = GeneratorView.as_view('create'), methods = ['GET', 'POST'])

@@ -22,7 +22,7 @@
 			<ul class="nav navbar-nav">
 				{% set navigation_bar = [
 					('/', 'home', 'Home'),
-					('/create', 'create', 'Create'),
+					('/create', 'show_view', 'Create'),
 				] -%}
 				{% for href, id, caption in navigation_bar %}
 					<li{% if id == active_page %} class="active"{% endif
