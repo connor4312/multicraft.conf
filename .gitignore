@@ -1,3 +1,4 @@
 /.tmp
 /flask
 /node_modules
+*.pyc
