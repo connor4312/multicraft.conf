@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Multicraft.jar.conf Utility Site</title>
+	<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Multicraft.jar.conf</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				{% set navigation_bar = [
+					('/', 'home', 'Home'),
+					('/create', 'create', 'Create'),
+				] -%}
+				{% for href, id, caption in navigation_bar %}
+					<li{% if id == active_page %} class="active"{% endif
+					%}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</nav>
+	<div class="container">{% block body %}{% endblock %}</div>
+	<footer>
+		Multicraft.conf has no relation with <a href="http://multicraft.org">Multicraft</a> itself, which is copyright 2010-2013 by xhost.ch GmbH. This site is an open source miniproject built as an experiment with Python by <a href="http://connorpeet.com">Connor Peet</a>. <a href="https://github.com/connor4312/multicraft.conf">Fork me</a>! I take no responsibility if you're an idiot and screw something up using this site.
+	</footer>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+	<script src="static/js/application.js"></script>
+</body>
+</html>
