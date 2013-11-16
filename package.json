@@ -1,0 +1,25 @@
+{
+  "name": "multicraft.conf",
+  "version": "0.0.0",
+  "description": "Website for managing and sharing Multicraft.confs",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "latest",
+    "twitter-bootstrap-3.0.0": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-clean": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connor4312/multicraft.conf.git"
+  },
+  "author": "Connor Peet",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/connor4312/multicraft.conf/issues"
+  }
+}
