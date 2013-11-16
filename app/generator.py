@@ -11,16 +11,20 @@ def show_view():
 
 	if request.method == 'POST':
 
-		parts = []
+		parts = {}
 		output = ''
 
-		for item in request.form:
-			section, attribute = item[0].split('_', 1)
-			parts[section][attribute] = item[1]
+		for name, value in request.form.iteritems():
+			section, attribute = name.split('_', 1)
+			if section not in parts:
+				parts[section] = {}
 
-		for section, attributes in parts:
-			output += '[' + section + ']'
-			for attribute, value in attributes:
-				output += '\n' + attribute + '=' + value
+			parts[section][attribute] = value
+
+		for section, attributes in parts.iteritems():
+			output += '[' + section + ']\n'
+
+			for attribute, value in attributes.iteritems():
+				output += attribute + '=' + value + '\n'
 
 		return output
