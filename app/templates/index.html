@@ -1,5 +1,24 @@
 {% extends "layout.html" %}
 {% set active_page = 'home' %}
 {% block body %}
-Hello World!
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td></td>
+				<td>Jar Name</td>
+				<td>Jar Version</td>
+				<td>Uploaded</td>
+			</tr>
+		</thead>
+		<tbody>
+		{% for item in entries %}
+			<tr>
+				<td>{{ item.votes_up }} / {{ item.votes_down }}</td>
+				<td></td>
+				<td>{{ item.version }}</td>
+				<td>{{ item.created_at }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

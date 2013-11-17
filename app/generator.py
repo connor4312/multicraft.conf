@@ -1,7 +1,9 @@
 from app import app
 
 import flask
-from flask import render_template, request
+from flask import request
+
+from database import connection, models
 
 def generateFromIterator(iterator):
 
@@ -32,7 +34,12 @@ def generateFromIterator(iterator):
 def show_view():
 
 	if request.method == 'GET':
-		return flask.render_template('generate.html');
+		jars = connection.session.query(models.Jar).all()
+		return flask.render_template('generate.html', jars = jars);
+
+	if request.method == 'POST':
+		model = models.Entry(jar_id = 0, version = '1')
+		connection.session
 
 @app.route('/create/raw', methods = ['POST'])
 def preview_generate_file():

@@ -5,14 +5,25 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label">Name</label>
 		<div class="col-md-9">
-			<input type="text" class="form-control" name="config_name" placeholder="Craftbukkit Beta">
+			<input type="text" class="form-control" name="opt[config_name]" placeholder="Craftbukkit Beta">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-md-3 control-label">Source</label>
 		<div class="col-md-9">
-			<input type="text" class="form-control" name="config_source" placeholder="http://cbukk.it/craftbukkit-beta.jar">
+			<input type="text" class="form-control" name="opt[config_source]" placeholder="http://cbukk.it/craftbukkit-beta.jar">
 			<span class="help-block">Where to download the jar file from.</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-3 control-label">Jar</label>
+		<div class="col-md-9">
+			<select name="opt[INTERNAL_jarname]" class="select-block form-control">
+				<option value="">Choose One</option>
+				{% for jar in jars %}
+				<option value="{{ jar.id }}">{{ jar.name }}</option>
+				{% endfor %}
+			</select>
 		</div>
 	</div>
 
@@ -26,11 +37,11 @@
 				<label class="col-md-3 control-label">When the server times out...</label>
 				<div class="col-md-9">
 					<label class="radio">
-						<input type="radio" name="settings_restartOnTimeout" value="True" data-toggle="radio" checked="">
+						<input type="radio" name="opt[settings_restartOnTimeout]" value="True" data-toggle="radio" checked="">
 						Revive it (restart the server)
 					</label>
 					<label class="radio">
-						<input type="radio" name="settings_restartOnTimeout" value="False" data-toggle="radio">
+						<input type="radio" name="opt[settings_restartOnTimeout]" value="False" data-toggle="radio">
 						Stand back and watch it burn
 					</label>
 				</div>
@@ -38,14 +49,14 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">Log File</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="settings_logFile" placeholder="server.log" value="server.log">
+					<input type="text" class="form-control" name="opt[settings_logFile]" placeholder="server.log" value="server.log">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">Rotate Log</label>
 				<div class="col-md-9">
 					<div class="input-group">
-						<input type="text" class="form-control" name="settings_logRotateSize" placeholder="No Rotation">
+						<input type="text" class="form-control" name="opt[settings_logRotateSize]" placeholder="No Rotation">
 						<span class="input-group-addon">Bytes</span>
 					</div>
 					<span class="help-block">Rotate the log file if it gets this big (blank for no rotation).</span>
@@ -54,7 +65,7 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">Number of Log Backups</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="settings_logBackupCount" placeholder="5">
+					<input type="text" class="form-control" name="opt[settings_logBackupCount]" placeholder="5">
 					<span class="help-block">If rotation is on, only this number of backups will be kept.</span>
 				</div>
 			</div>
@@ -71,13 +82,13 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">Plugin Directory</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="plugins_pluginDir" placeholder="plugins" value="plugins">
+					<input type="text" class="form-control" name="opt[plugins_pluginDir]" placeholder="plugins" value="plugins">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">Plugin Name Match</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="plugins_pluginMatch" placeholder="\.(jar|zip)$" value="\.(jar|zip)$">
+					<input type="text" class="form-control" name="opt[plugins_pluginMatch]" placeholder="\.(jar|zip)$" value="\.(jar|zip)$">
 					<span class="help-block">This is a <i>regular expression</i>. If you don't know what that means, you probably don't want to be touching it!</span>
 				</div>
 			</div>
@@ -93,97 +104,97 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">/say Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_say" placeholder="say" value="say">
+					<input type="text" class="form-control" name="opt[commands_say]" placeholder="say" value="say">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/list Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_list" placeholder="list" value="list">
+					<input type="text" class="form-control" name="opt[commands_list]" placeholder="list" value="list">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/save-on Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_save-on" placeholder="save-on" value="save-on">
+					<input type="text" class="form-control" name="opt[commands_save]-on" placeholder="save-on" value="save-on">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/save-off Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_save-off" placeholder="save-off" value="save-on">
+					<input type="text" class="form-control" name="opt[commands_save]-off" placeholder="save-off" value="save-on">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/stop Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_stop" placeholder="stop" value="stop">
+					<input type="text" class="form-control" name="opt[commands_stop]" placeholder="stop" value="stop">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/tell Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_tell" placeholder="tell" value="tell">
+					<input type="text" class="form-control" name="opt[commands_tell]" placeholder="tell" value="tell">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/give Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_give" placeholder="give" value="give">
+					<input type="text" class="form-control" name="opt[commands_give]" placeholder="give" value="give">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/tp Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_tp" placeholder="tp" value="tp">
+					<input type="text" class="form-control" name="opt[commands_tp]" placeholder="tp" value="tp">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/deop Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_deop" placeholder="deop" value="deop">
+					<input type="text" class="form-control" name="opt[commands_deop]" placeholder="deop" value="deop">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/op Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_op" placeholder="op" value="op">
+					<input type="text" class="form-control" name="opt[commands_op]" placeholder="op" value="op">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/pardon-ip Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_pardon-ip" placeholder="pardon-ip" value="pardon-ip">
+					<input type="text" class="form-control" name="opt[commands_pardon]-ip" placeholder="pardon-ip" value="pardon-ip">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/ban-ip Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_ban-ip" placeholder="ban-ip" value="ban-ip">
+					<input type="text" class="form-control" name="opt[commands_ban]-ip" placeholder="ban-ip" value="ban-ip">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/pardon Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_pardon" placeholder="pardon" value="pardon">
+					<input type="text" class="form-control" name="opt[commands_pardon]" placeholder="pardon" value="pardon">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/ban Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_ban" placeholder="ban" value="ban">
+					<input type="text" class="form-control" name="opt[commands_ban]" placeholder="ban" value="ban">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/kick Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_kick" placeholder="kick" value="kick">
+					<input type="text" class="form-control" name="opt[commands_kick]" placeholder="kick" value="kick">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">/help Equivalent</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="commands_help" placeholder="help" value="help">
+					<input type="text" class="form-control" name="opt[commands_help]" placeholder="help" value="help">
 				</div>
 			</div>
 		</div>
@@ -198,19 +209,19 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">Encoding</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_encoding" placeholder="system" value="system">
+					<input type="text" class="form-control" name="opt[encoding_encoding]" placeholder="system" value="system">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">Decoding</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_decoding" placeholder="system" value="system">
+					<input type="text" class="form-control" name="opt[encoding_decoding]" placeholder="system" value="system">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">File Encoding</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_fileEncoding" placeholder="latin-1" value="latin-1">
+					<input type="text" class="form-control" name="opt[encoding_fileEncoding]" placeholder="latin-1" value="latin-1">
 				</div>
 			</div>
 		</div>
@@ -225,7 +236,7 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label">Start Command</label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" name="start_command" placeholder='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui' value='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui'>
+					<input type="text" class="form-control" name="opt[start_command]" placeholder='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui' value='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui'>
 				</div>
 			</div>
 		</div>
