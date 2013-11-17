@@ -33,7 +33,6 @@
 						<input type="radio" name="settings_restartOnTimeout" value="False" data-toggle="radio">
 						Stand back and watch it burn
 					</label>
-					<span class="help-block">Restart if the server decides to die D:</span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -47,7 +46,7 @@
 				<div class="col-md-9">
 					<div class="input-group">
 						<input type="text" class="form-control" name="settings_logRotateSize" placeholder="No Rotation">
-						<span class="input-group-addon">MB</span>
+						<span class="input-group-addon">Bytes</span>
 					</div>
 					<span class="help-block">Rotate the log file if it gets this big (blank for no rotation).</span>
 				</div>
@@ -234,7 +233,24 @@
 
 	<h2>Additional Configurations</h2>
 	<p>Use this section if you need to set some configuration outside of what is shown here.</p>
+	<table class="table table-striped" id="js-customstable">
+		<thead>
+			<tr>
+				<td>Section</td>
+				<td>Property</td>
+				<td>Value</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td style="text-align:right"><button class="btn btn-primary" id="js-addrow">Add Another</button></td>
+			</tr>
+		</tbody>
+	</table>
 
+	<div id="js-customadds"></div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-md-9">
