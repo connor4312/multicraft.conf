@@ -1,4 +1,5 @@
 $ () ->
+
 	$('#js-previewgen').on 'click', (e) ->
 
 		$form = $('#js-generateform')
@@ -7,11 +8,12 @@ $ () ->
 			url: $(this).attr('data-url')
 			type: 'POST'
 			success: (data) ->
-				$('pre', $form).remove()
-				$el = $('<pre />')
-				$el.html(data).appendTo($form)
+				$('code', $form).remove()
+				$el = $('<code class="language-ini" />')
+				$el.html(data).appendTo($form);
+				Prism.highlightAll();
 
 				$('body').animate
-					scrollTop: $('pre', $form).position().top
+					scrollTop: $('code', $form).position().top
 
 		return false; 

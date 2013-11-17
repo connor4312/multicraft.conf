@@ -23,9 +23,9 @@ def generateFromIterator(iterator):
 			if not value:
 				output += '#'
 
-			output += attribute + '=' + value + '\n'
+			output += attribute + ' = ' + value + '\n'
 
-	return output
+	return output.strip('\n\r ')
 
 
 @app.route('/create', methods = ['GET', 'POST'])
