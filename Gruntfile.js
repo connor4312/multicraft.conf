@@ -21,7 +21,6 @@ module.exports = function(grunt) {
           'node_modules/Flat-UI/js/flatui-radio.js',
           'node_modules/Flat-UI/js/jquery.tagsinput.js',
           'node_modules/Flat-UI/js/jquery.stacktable.js',
-          'node_modules/Flat-UI/js/application.js',
           '.tmp/js/**/*.js'
         ],
         dest: '.tmp/application.js',
