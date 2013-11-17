@@ -18,50 +18,8 @@
 
 	<section class="collapsible" data-default="hidden">
 		<div class="js-head">
-			<h2>Encoding (Danger)</h2>
-			<p>The defaults are fine for most jars. Only change this if you know what you're doing!</p>
-		</div>
-		<div class="js-reveal">
-			<div class="form-group">
-				<label class="col-md-3 control-label">Encoding</label>
-				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_encoding" placeholder="system" value="system">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label">Decoding</label>
-				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_decoding" placeholder="system" value="system">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label">File Encoding</label>
-				<div class="col-md-9">
-					<input type="text" class="form-control" name="encoding_fileEncoding" placeholder="latin-1" value="latin-1">
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="collapsible" data-default="hidden">
-		<div class="js-head">
-			<h2>Start Command (Danger)</h2>
-			<p>Only change this if you know what you're doing!</p>
-		</div>
-		<div class="js-reveal">
-			<div class="form-group">
-				<label class="col-md-3 control-label">File Encoding</label>
-				<div class="col-md-9">
-					<input type="text" class="form-control" name="start_command" placeholder='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui' value='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui'>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="collapsible" data-default="hidden">
-		<div class="js-head">
 			<h2>Settings</h2>
-			<p>Only change this if you know what you're doing!</p>
+			<p>Some useful settings to mess around with in here.</p>
 		</div>
 		<div class="js-reveal">
 			<div class="form-group">
@@ -227,6 +185,48 @@
 				<label class="col-md-3 control-label">/help Equivalent</label>
 				<div class="col-md-9">
 					<input type="text" class="form-control" name="commands_help" placeholder="help" value="help">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="collapsible" data-default="hidden">
+		<div class="js-head">
+			<h2>Encoding (Danger)</h2>
+			<p>The defaults are fine for most jars. Only change this if you know what you're doing!</p>
+		</div>
+		<div class="js-reveal">
+			<div class="form-group">
+				<label class="col-md-3 control-label">Encoding</label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" name="encoding_encoding" placeholder="system" value="system">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">Decoding</label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" name="encoding_decoding" placeholder="system" value="system">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">File Encoding</label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" name="encoding_fileEncoding" placeholder="latin-1" value="latin-1">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="collapsible" data-default="hidden">
+		<div class="js-head">
+			<h2>Start Command (Danger)</h2>
+			<p>Only change this if you know what you're doing!</p>
+		</div>
+		<div class="js-reveal">
+			<div class="form-group">
+				<label class="col-md-3 control-label">Start Command</label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" name="start_command" placeholder='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui' value='"{JAVA}" -Xmx{MAX_MEMORY}M -Xms{START_MEMORY}M -Djline.terminal=jline.UnsupportedTerminal -jar "{JAR}" nogui'>
 				</div>
 			</div>
 		</div>
