@@ -47,8 +47,9 @@ def show_view():
 		return flask.render_template('generate.html', jars = jars);
 
 	if request.method == 'POST':
-		model = models.Entry(jar_id = 0, version = '1')
-		connection.session
+		print request.form
+		entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'))
+		return entry.validate()
 
 @app.route('/create/raw', methods = ['POST'])
 def preview_generate_file():
