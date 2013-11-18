@@ -28,8 +28,8 @@ class Entry(connection.Base):
 	def validate(self, form):
 		if not connection.session.query(Jar).filter(Jar.id == self.jar_id).count():
 			return 'Invalid jar file selected.'
-		if not re.match(r'^[0-9]\.[0-9](\.[0-9])?$', self.version):
-			return 'You must enter a valid Minecraft version number!'
+		if not re.match(r'(^[0-9]\.[0-9](\.[0-9])?)|(^Latest$)', self.version):
+			return 'You must enter a valid Minecraft version number, or "Latest"!'
 		if len(form.get('opt_config_name')) < 2:
 			return 'You have to enter a good jar name!'
 		if not re.match(r'^(http|https|ftp):\/\/[A-z\-\_\.\/0-9\:]+\.(zip|jar)$', form.get('opt_config_source')):
