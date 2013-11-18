@@ -1,11 +1,13 @@
 from app import app
 
+import config
+
 import flask
-from flask import request, redirect
+from flask import request, redirect, url_for
 
 from database import connection, models
 
-def generateFromIterator(data):
+def generateFromIterator(data, id = None):
 
 	parts = {}
 	output = '''
@@ -25,6 +27,9 @@ def generateFromIterator(data):
 				parts[section] = {}
 
 			parts[section][attribute] = value
+
+	if (id):
+		parts['config']['configSource'] = config.url + url_for('show_conf_file_raw', entry_id = id)
 
 	for section, attributes in parts.iteritems():
 		output += '\n[' + section + ']\n'
@@ -60,7 +65,7 @@ def show_view():
 			connection.session.commit()
 
 			with open('storage/post' + str(entry.id) + '.txt', 'w') as output:
-				output.write(generateFromIterator(request.form))
+				output.write(generateFromIterator(request.form, id = entry.id))
 
 			return redirect('/conf/' + str(entry.id))
 

@@ -5,6 +5,8 @@ database['password'] = 'ww785Zr2EZ7hQfzL'
 database['host'] = 'localhost'
 database['db'] = 'multicraftconf'
 
+url = 'http://multicraft.ix.gd'
+
 jars = [
 	'Craftbukkit',
 	'Spigot',
