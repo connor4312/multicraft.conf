@@ -1,14 +1,24 @@
 {% extends "layout.html" %}
 {% block body %}
-	<h2>MC <a href="{{ url_for('list_by_version', name = entry.version) }}">{{ entry.version }}</a>: <a href="{{ url_for('list_by_jar', id = entry.jar.id) }}">{{ entry.jar.name }}</a></h2>
-	<p>
-		Created <span class="js-timeago">{{ entry.created_at }} UTC</span>. Description:
-		{% if entry.description %}
-			{{ entry.description}}
-		{% else %}
-			None.
-		{% endif %}
-	</p>
+	<h2>MC <a href="{{ url_for('list_by_version', name = entry.version) }}">{{ entry.version }}</a>: <a href="{{ url_for('list_by_jar', id = entry.jar.id) }}">{{ entry.jar.name }}</a> <small><span style="color:green"><span id="js-upvotes">{{ entry.votes_up }}</span>+</span> / <span style="color:red"><span id="js-downvotes">{{ entry.votes_down }}</span>-</span></small></h2>
+	<div class="row">	
+		<div class="col-md-8">
+			<p>
+				Created <span class="js-timeago">{{ entry.created_at }} UTC</span>. Description:
+				{% if entry.description %}
+					{{ entry.description}}
+				{% else %}
+					None.
+				{% endif %}
+			</p>
+		</div>
+		<div class="col-md-4 row" style="text-align:right" id="js-votebuttons">
+			{% if not voted %}
+				<button class="btn btn-success" data-url="{{ url_for('vote_for_conf', entry_id = entry.id, direction = 'up') }}" data-increment="#js-upvotes"><span class="fui-check"></span> Vote Up</button>
+				<button class="btn btn-danger" data-url="{{ url_for('vote_for_conf', entry_id = entry.id, direction = 'down') }}" data-increment="#js-downvotes"><span class="fui-cross"></span> Vote Down</button>
+			{% endif %}
+		</div>
+	</div>
 	<code class="language-ini">
 {{ data }}
 	</code>

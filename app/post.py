@@ -24,7 +24,7 @@ def show_conf_file(entry_id):
 	with open('storage/post' + str(entry.id) + '.txt', 'r') as inputf:
 		data = inputf.read()
 
-	return flask.render_template('post.html', entry = entry, data = data);
+	return flask.render_template('post.html', entry = entry, data = data, voted = user_has_voted(entry_id));
 
 @app.route('/conf/<int:entry_id>/raw')
 def show_conf_file_raw(entry_id):
@@ -35,7 +35,7 @@ def show_conf_file_raw(entry_id):
 	except IOError:
 		print '404'
 
-@app.route('/conf/<int:entry_id>/vote/<string:direction>')
+@app.route('/conf/<int:entry_id>/vote/<string:direction>', methods = ['POST'])
 def vote_for_conf(entry_id, direction):
 	if (user_has_voted(entry_id = entry_id)):
 		return 'You already voted!'
