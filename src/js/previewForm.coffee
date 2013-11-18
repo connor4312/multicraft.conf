@@ -33,6 +33,24 @@ $ () ->
 
 		return false; 
 
+	$('#js-postbutton').on 'click', (e) ->
+
+		$form = $('#js-generateform')
+		beforeSubmit $form
+
+		$form.ajaxSubmit
+			url: $(@).attr('data-url')
+			type: 'POST'
+			success: (data) ->
+				if data is 'OK'
+					$form.submit()
+				else
+					$('#js-errorbox').html $('<div class="alert alert-danger" />').html(data)
+					$('body').animate
+						scrollTop: 0
+
+		return false; 
+
 	$('#js-addrow').click () ->
 		$el = $('<tr class="js-datasource">
 			<td><input data-name="section" class="form-control" type="text" placeholder="Section"></td>

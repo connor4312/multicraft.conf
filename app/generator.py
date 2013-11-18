@@ -1,7 +1,7 @@
 from app import app
 
 import flask
-from flask import request
+from flask import request, redirect
 
 from database import connection, models
 
@@ -42,15 +42,35 @@ def generateFromIterator(data):
 @app.route('/create', methods = ['GET', 'POST'])
 def show_view():
 
-	if request.method == 'GET':
+	def show_response(error = None):
 		jars = connection.session.query(models.Jar).order_by(models.Jar.name.asc()).all()
-		return flask.render_template('generate.html', jars = jars);
+		return flask.render_template('generate.html', jars = jars, form = request.form, error = error)
+
+	if request.method == 'GET':
+		return show_response()
 
 	if request.method == 'POST':
-		print request.form
 		entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'))
-		return entry.validate()
+
+		m = entry.validate(request.form)
+		if m:
+			return show_response(error = m)
+		else:
+			# connection.session.add(entry)
+			# connection.session.commit()
+			# return redirect('/conf/' + entry.id)
+			return 'yep!'
 
 @app.route('/create/raw', methods = ['POST'])
 def preview_generate_file():
 	return generateFromIterator(request.form)
+
+
+@app.route('/create/validate', methods = ['POST'])
+def validate_post():
+	entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'))
+	m = entry.validate(request.form)
+	if m:
+		return m
+	else:
+		return 'OK'
