@@ -7,6 +7,10 @@ database['db'] = 'multicraftconf'
 
 url = 'http://multicraft.ix.gd'
 
+http = {}
+http['port'] = 5050
+http['host'] = '0.0.0.0'
+
 jars = [
 	'Craftbukkit',
 	'Spigot',

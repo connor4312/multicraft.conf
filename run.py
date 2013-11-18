@@ -1,3 +1,3 @@
 #!flask/bin/python
-from app import app
-app.run(debug = True, host='0.0.0.0')
+from app import app, config
+app.run(debug = True, host=config.http['host'], port=config.http['port'])
