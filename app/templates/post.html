@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+	<h2>MC <a href="{{ url_for('list_by_version', name = entry.version) }}">{{ entry.version }}</a>: <a href="{{ url_for('list_by_jar', id = entry.jar.id) }}">{{ entry.jar.name }}</a></h2>
+	<code class="language-ini">
+{{ data }}
+	</code>
+{% endblock %}

@@ -18,6 +18,8 @@ class Entry(connection.Base):
 	votes_down = Column(Integer, default = 0)
 	created_at = Column(DateTime, default = datetime.now)
 
+	jar = relationship("Jar", backref = "entry")
+
 	def __repr__(self):
 		return "<Entry(jar_id='%s', votes_up='%s', votes_down='%s', created_at='%s')>" % (self.jar_id, self.votes_up, self.votes_down, self.created_at)
 
@@ -37,7 +39,7 @@ class Jar(connection.Base):
 
 	id = Column(Integer, primary_key = True)
 	name = Column(String(20))
-	entries = relationship("Entry", backref = "entries")
+	entries = relationship("Entry", backref = "jars")
 
 	def __repr__(self):
 		return "<Jar(name='%s')>" % (self.name)
