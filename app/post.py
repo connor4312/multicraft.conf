@@ -1,5 +1,5 @@
 from app import app
-
+import os
 import flask
 from flask import Response, request
 
@@ -21,7 +21,7 @@ def show_conf_file(entry_id):
 		return '404'
 
 	data = ''
-	with open('storage/post' + str(entry.id) + '.txt', 'r') as inputf:
+	with open(os.path.dirname(os.path.realpath(__file__)) + '/../storage/post' + str(entry.id) + '.txt', 'r') as inputf:
 		data = inputf.read()
 
 	return flask.render_template('post.html', entry = entry, data = data, voted = user_has_voted(entry_id));

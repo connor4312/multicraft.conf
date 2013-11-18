@@ -1,7 +1,7 @@
 from app import app
 
 import config
-
+import os
 import flask
 from flask import request, redirect, url_for
 
@@ -64,7 +64,7 @@ def show_view():
 			connection.session.add(entry)
 			connection.session.commit()
 
-			with open('storage/post' + str(entry.id) + '.txt', 'w') as output:
+			with open(os.path.dirname(os.path.realpath(__file__)) + '/../storage/post' + str(entry.id) + '.txt', 'w') as output:
 				output.write(generateFromIterator(request.form, id = entry.id))
 
 			return redirect('/conf/' + str(entry.id))
