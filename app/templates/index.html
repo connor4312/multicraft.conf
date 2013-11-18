@@ -8,7 +8,7 @@
 				<td></td>
 				<td>Jar Name</td>
 				<td>Jar Version</td>
-				<td>Uploaded</td>
+				<td>Description</td>
 				<td></td>
 			</tr>
 		</thead>
@@ -18,7 +18,7 @@
 				<td><span style="color:green">{{ item.votes_up }}+</span> &nbsp; <span style="color:red">{{ item.votes_down }}-</span></td>
 				<td><a href="{{ url_for('list_by_jar', id = item.jar.id) }}">{{ item.jar.name }}</a></td>
 				<td><a href="{{ url_for('list_by_version', name = item.version) }}">{{ item.version }}</a></td>
-				<td><span class="js-timeago">{{ item.created_at }} UTC</td>
+				<td>{{ item.description }}</td>
 				<td><a href="{{ url_for('show_conf_file', entry_id = item.id) }}" class="btn btn-primary btn-xs">View Config</a></td>
 			</tr>
 		{% endfor %}
