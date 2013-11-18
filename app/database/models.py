@@ -20,6 +20,7 @@ class Entry(connection.Base):
 	created_at = Column(DateTime, default = datetime.now)
 
 	jar = relationship("Jar", backref = "entry")
+	votes = relationship("Vote", backref = "entry")
 
 	def __repr__(self):
 		return "<Entry(jar_id='%s', votes_up='%s', votes_down='%s', created_at='%s')>" % (self.jar_id, self.votes_up, self.votes_down, self.created_at)
@@ -45,10 +46,18 @@ class Jar(connection.Base):
 	def __repr__(self):
 		return "<Jar(name='%s')>" % (self.name)
 
+class Vote(connection.Base):
+	__tablename__ = 'votes'
+
+	id = Column(Integer, primary_key = True)
+	ip = Column(String(45))
+	entry_id = Column(Integer, ForeignKey('entries.id'))
+
+	def __repr__(self):
+		return "<Jar(entry_id='%s', ip='%s')>" % (self.entry_id, self.ip)
 
 def migrate():
-	for tbl in reversed(connection.Base.metadata.sorted_tables):
-		tbl.drop(connection.engine)
+	connection.Base.metadata.drop_all(connection.engine)
 
 	connection.Base.metadata.create_all(connection.engine)
 

@@ -32,5 +32,7 @@ jars = [
 	'MCPC+',
 	'MCPC+ Legacy',
 	'Spout',
-	'Other'
+	'Other',
+	'BungeeCord',
+	'LilyPad'
 ]
