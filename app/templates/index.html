@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% set active_page = 'home' %}
 {% block body %}
+	<h2>{{ title }}</h2>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -8,15 +9,17 @@
 				<td>Jar Name</td>
 				<td>Jar Version</td>
 				<td>Uploaded</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
 		{% for item in entries %}
 			<tr>
-				<td>{{ item.votes_up }} / {{ item.votes_down }}</td>
-				<td></td>
-				<td>{{ item.version }}</td>
-				<td>{{ item.created_at }}</td>
+				<td><span style="color:green">{{ item.votes_up }}+</span> &nbsp; <span style="color:red">{{ item.votes_down }}-</span></td>
+				<td><a href="{{ url_for('list_by_jar', id = item.jar.id) }}">{{ item.jar.name }}</a></td>
+				<td><a href="{{ url_for('list_by_version', name = item.version) }}">{{ item.version }}</a></td>
+				<td><span class="js-timeago">{{ item.created_at }} UTC</td>
+				<td><a href="{{ url_for('show_conf_file', entry_id = item.id) }}" class="btn btn-primary btn-xs">View Config</a></td>
 			</tr>
 		{% endfor %}
 		</tbody>
