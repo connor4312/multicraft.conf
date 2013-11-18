@@ -8,6 +8,10 @@ def home():
 	entries = connection.session.query(models.Entry).all()
 	return flask.render_template('index.html', entries = entries, title = 'All Configs');
 
+@app.route('/about')
+def about():
+	return flask.render_template('about.html');
+
 @app.route('/jar/<int:id>')
 def list_by_jar(id):
 	entries = connection.session.query(models.Entry).filter(models.Entry.jar_id == id).all()
