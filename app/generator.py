@@ -50,7 +50,7 @@ def show_view():
 		return show_response()
 
 	if request.method == 'POST':
-		entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'))
+		entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'), description = request.form.get('description'))
 
 		m = entry.validate(request.form)
 		if m:
@@ -71,7 +71,7 @@ def preview_generate_file():
 
 @app.route('/create/validate', methods = ['POST'])
 def validate_post():
-	entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'))
+	entry = models.Entry(jar_id = request.form.get('jar'), version = request.form.get('version'), description = request.form.get('description'))
 	m = entry.validate(request.form)
 	if m:
 		return m

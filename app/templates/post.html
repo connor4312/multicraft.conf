@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
 	<h2>MC <a href="{{ url_for('list_by_version', name = entry.version) }}">{{ entry.version }}</a>: <a href="{{ url_for('list_by_jar', id = entry.jar.id) }}">{{ entry.jar.name }}</a></h2>
+	<p>
+		Created <span class="js-timeago">{{ entry.created_at }} UTC</span>. Description:
+		{% if entry.description %}
+			{{ entry.description}}
+		{% else %}
+			None.
+		{% endif %}
+	</p>
 	<code class="language-ini">
 {{ data }}
 	</code>

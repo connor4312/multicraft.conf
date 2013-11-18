@@ -14,6 +14,7 @@ class Entry(connection.Base):
 	id = Column(Integer, primary_key = True)
 	jar_id = Column(Integer, ForeignKey('jars.id'))
 	version = Column(String(10))
+	description = Column(String(200))
 	votes_up = Column(Integer, default = 0)
 	votes_down = Column(Integer, default = 0)
 	created_at = Column(DateTime, default = datetime.now)
