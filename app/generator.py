@@ -56,10 +56,13 @@ def show_view():
 		if m:
 			return show_response(error = m)
 		else:
-			# connection.session.add(entry)
-			# connection.session.commit()
-			# return redirect('/conf/' + entry.id)
-			return 'yep!'
+			connection.session.add(entry)
+			connection.session.commit()
+
+			with open('storage/post' + str(entry.id) + '.txt', 'w') as output:
+				output.write(generateFromIterator(request.form))
+
+			return redirect('/conf/' + str(entry.id))
 
 @app.route('/create/raw', methods = ['POST'])
 def preview_generate_file():
